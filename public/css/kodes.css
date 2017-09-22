@@ -1,0 +1,45 @@
+body { 
+ /*background:#f8f9fa url(/public/img/bg.png) repeat scroll top left;color:#494949;f -webkit-background-size: cover;
+ */ -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+
+.page {
+  margin-top: 20px;
+  border: 1px solid #eee;
+  padding: 10px;
+}
+
+ .page-header {
+  margin-top: 0;
+}
+
+
+.panel-default {
+  opacity: 0.9;
+  margin-top:30px;
+}
+.form-group.last { margin-bottom:0px; }	
+
+.navbar {
+        border-radius: 0;
+        margin-bottom: 0;
+}
+
+.hero-unit {
+  background-color: #222;
+  margin-top:0;
+  min-width: 940px;
+  color:#ccc;
+  padding-top:0px;
+  border-bottom:2px solid #375EAB;
+    font-family: Helvetica;
+}
+.hero-unit h1 {
+    font-weight: bold;
+}
+
+
+

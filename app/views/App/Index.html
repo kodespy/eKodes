@@ -1,0 +1,38 @@
+{{set . "title" "eKodes"}}
+{{template "header.html" .}}
+{{template "menu.html" .}}
+
+<!-- Banner at top -->
+<header class="hero-unit">
+    <div class="container">
+        <div class="row">
+            <br />
+                <div class="col-md-4" style="padding-bottom:20px">
+                    <!-- Image -->
+                    <img src="/public/img/logo.png" width="250">
+                </div>
+                <div class="col-md-8">
+                    <h1 style="font-size:4em;">Revel</h1>
+                    <small style="font-size: 14pt;">A high-productivity web framework for the Go language.</small>
+
+                    <div style="font-size: 14pt; margin-top:80px;">
+                        <small style="font-weight: bold">Latest Release:</small><br>
+                        <b><a href="https://github.com/revel/revel/releases">v0.17</a></b> on <small>2017-07-11</small><br>
+                        <div style="margin-top:3px">Go: v1.6+ required</div>
+                    </div>
+                </div>
+            <br /><br />
+        </div>
+    </div>
+</header>
+
+
+<div class="container">
+  <div class="row">
+    <div class="span6">
+      {{template "flash.html" .}}
+    </div>
+  </div>
+</div>
+
+{{template "footer.html" .}}
