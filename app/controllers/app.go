@@ -14,16 +14,15 @@ type Ciudades struct {
 	*revel.Controller
 }
 
-func (c App) connected() *m.Usuario {
-	// if c.ViewArgs["usuario"] != nil {
-	// 	return c.ViewArgs["usuario"].(*m.Usuario)
-	// }
-	// if username, ok := c.Session["user"]; ok {
-	// 	return c.getUser(username)
-	// }
+func (c Application) connected() *m.Usuario {
+	if c.ViewArgs["user"] != nil {
+		return c.ViewArgs["user"].(*m.Usuario)
+	}
+	//if usuario, ok := c.Session["user"]; ok {
+	//	return c.getUser(username)
+	//}
 	return nil
 }
-
 
 
 func (c App) Login(email, clave string) revel.Result {
@@ -38,13 +37,13 @@ func (c App) Login(email, clave string) revel.Result {
 	if  err == nil {
 		//err := bcrypt.CompareHashAndPassword(user.HashedPassword, []byte(password))
 		//if err == nil {
-			c.Session["usuario"] = email
+			c.Session["user"] = email
 			//if remember {
 			//	c.Session.SetDefaultExpiration()
 			//} else {
 			//	c.Session.SetNoExpiration()
 			//}
-			//c.Flash.Success("Welcome, " + username)
+			c.Flash.Success("Welcome, " + email)
 			revel.INFO.Println("--- Aqui")
 			return c.Redirect(routes.App.Index())
 		//}
@@ -52,13 +51,18 @@ func (c App) Login(email, clave string) revel.Result {
 
 	revel.INFO.Println("--- Por Aqui")
 	c.Flash.Out["email"] = email
-	c.Flash.Error("Login failed")
+	c.Flash.Error("No se pudo autenticar el usuario...")
 	return c.Render()
 }
 func (c App) Index() revel.Result {
-	//if c.connected() != nil {
-	//	return c.Redirect(routes.App.Login())
-	//}
+
+	estado, err := c.Session["user"]
+	revel.INFO.Println("--------------------")
+	revel.INFO.Println(estado)
+	revel.INFO.Println("--------------------")
+	if err != true {
+	    return c.Redirect(routes.App.Login("",""))
+	}
 	//c.Flash.Error("Please log in first")	
 	return c.Render()
 	//return c.Render()
@@ -72,4 +76,12 @@ func (c Ciudades) Lista() revel.Result {
 	//return c.Redirect(routes.Ciudades.Lista(), ciudades)
 	return c.Render(ciudades)
 	//return c.Render()
+}
+
+func (c App) Logout() revel.Result {
+	for k := range c.Session {
+		delete(c.Session, k)
+	}
+	revel.INFO.Println("--- Logout")
+	return c.Redirect(routes.App.Index())
 }

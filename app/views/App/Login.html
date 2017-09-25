@@ -10,6 +10,14 @@
                     <h4><i class="fa fa-barcode"></i> eKodes </h4>
                 </div>
                 <div class="panel-body" style="margin-top: 10px;">
+                      <div class="row" style="margin: 10px;">
+
+    <div class="span6">
+      {{template "flash.html" .}}
+    </div>
+  </div>
+
+
                     <form class="form-horizontal" role="form" action="{{url "App.Login"}}" id="formLogin" method="POST">
                     <div class="form-group">
                         <label for="email" class="col-sm-3 control-label">
